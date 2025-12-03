@@ -6,7 +6,7 @@
 
 <!-- hero -->
 <template>
-  <section class="hero-section">
+  <section class="hero-section" id="hero">
     <div class="content">
       <h2>Onde a paisagem vira <span class="highlight">inspiração</span>.</h2>
       <p>
@@ -23,10 +23,12 @@
 <style scoped>
 .hero-section {
   display: flex;
+  margin-top: 4vh;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 10%; /* Ajuste o padding conforme necessário */
-  background-color: #f7f7f7; /* Fundo claro para contrastar com o texto */
+  padding: 80px 10%;
+  background-color: var(--color-bg-secondary);
+  transition: background-color 0.3s ease;
 }
 
 .content {
@@ -34,46 +36,71 @@
 }
 
 h2 {
-  font-size: 4em; /* Tamanho grande para o título */
-  font-weight: 800; /* Negrito */
-  color: #333;
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: var(--color-text-secondary);
   margin: 0 0 20px 0;
   line-height: 1.1;
+  transition: color 0.3s ease;
 }
 
 .highlight {
-  color: #e54d7d; /* Cor rosa vibrante */
+  color: var(--color-primary);
+  transition: color 0.3s ease;
 }
-
 
 p {
   font-size: 1.25em;
-  color: #666;
+  color: var(--color-text-tertiary);
   margin: 0;
+  transition: color 0.3s ease;
 }
 
 .image-container {
-  width: 45%;
+  width: 80%;
   display: flex;
   justify-content: center;
 }
 
 .hero-image {
-  width: 100%;
-  max-width: 400px; /* Limite o tamanho da imagem */
+  width: 80%;
   height: auto;
-  border-radius: 20px; /* Borda arredondada conforme a imagem */
+  border-radius: 20px;
   object-fit: cover;
 }
 
-/* Estilo para a borda arredondada da imagem que é característica no original */
 .image-container::before {
   content: '';
   position: absolute;
-  width: 420px; /* Um pouco maior que a imagem */
+  width: 420px;
   height: 420px;
   background-color: transparent;
   border-radius: 50%;
-  /* Outros ajustes de posição e sombra podem ser necessários */
 }
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10vh;
+  }
+
+  .content {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .image-container {
+    width: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+  }
+}
+
 </style>

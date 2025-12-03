@@ -38,10 +38,11 @@
 
 <style scoped>
 .footer-section {
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
   padding: 40px 10%;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
   text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .footer-content {
@@ -52,24 +53,25 @@
 }
 
 .contact-info, .about-info, .newsletter-form {
-  flex-basis: 30%; /* Distribuição de espaço */
+  flex-basis: 30%;
 }
 
 h5 {
   font-size: 1.2em;
   font-weight: bold;
-  color: #333;
+  color: var(--color-text-secondary);
   margin-bottom: 15px;
+  transition: color 0.3s ease;
 }
 
 p {
   font-size: 1em;
-  color: #666;
+  color: var(--color-text-tertiary);
   margin: 5px 0;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-/* Newsletter Styles */
 .newsletter-form {
   text-align: right;
 }
@@ -85,14 +87,20 @@ p {
   max-width: 300px;
   padding: 15px 10px;
   margin-bottom: 10px;
-  border: none;
-  background-color: #f5f5f5;
+  border: 1px solid var(--color-input-border);
+  background-color: var(--color-input-bg);
   border-radius: 5px;
   box-sizing: border-box;
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.email-input::placeholder {
+  color: var(--color-text-tertiary);
 }
 
 .subscribe-button {
-  background-color: #e54d7d; /* Cor rosa vibrante */
+  background-color: var(--color-primary);
   color: white;
   padding: 10px 30px;
   border: none;
@@ -100,11 +108,12 @@ p {
   cursor: pointer;
   font-weight: bold;
   font-size: 1em;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .subscribe-button:hover {
-  background-color: #c9436c;
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
 }
 
 /* Social Links Styles */
@@ -120,10 +129,17 @@ p {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: #333; /* Cor dos ícones no original é preta/escura */
-  color: white;
+  background-color: var(--color-text-secondary);
+  color: var(--color-bg-primary);
   border-radius: 50%;
   text-decoration: none;
   font-size: 1.2em;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.social-icon:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-3px);
 }
 </style>

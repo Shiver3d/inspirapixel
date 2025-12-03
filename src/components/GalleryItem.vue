@@ -1,7 +1,9 @@
 <script>
+import { Icon } from "@iconify/vue";
 // script setup não é usado aqui porque precisamos definir props, então usamos a sintaxe padrão do Vue para o componente do card
 export default {
   name: 'GalleryItem',
+  components: { Icon },
   props: {
     imageSrc: {
       type: String,
@@ -12,8 +14,17 @@ export default {
       default: 'Imagem inspiradora',
     },
   },
+  data() {
+    return {
+      liked: false,
+    };
+  },
+  methods: {
+    toggleLike() {
+      this.liked = !this.liked;
+    },
+  },
 };
-import { Icon } from "@iconify/vue";
 </script>
 
 
@@ -22,7 +33,12 @@ import { Icon } from "@iconify/vue";
   <div class="gallery-item">
     <div class="image-wrapper">
       <img :src="imageSrc" :alt="imageAlt" class="item-image" />
-      <div class="heart-icon">
+      <div class="heart-icon" @click="toggleLike" :class="{ liked: liked }">
+        <Icon 
+          :icon="liked ? 'material-symbols:heart-check' : 'material-symbols:heart-plus-outline-rounded'" 
+          width="24" 
+          height="24" 
+        />
       </div>
     </div>
   </div>
@@ -34,13 +50,17 @@ import { Icon } from "@iconify/vue";
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  box-shadow: 0 8px 24px var(--color-shadow-dark);
 }
 
 .image-wrapper {
-  /* Para manter a proporção retrato, crucial para o layout */
   position: relative;
   width: 100%;
-  padding-top: 150%; /* Altura 1.5x a largura (proporção retrato) */
+  padding-top: 150%;
 }
 
 .item-image {
@@ -61,10 +81,28 @@ import { Icon } from "@iconify/vue";
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   padding: 5px;
   cursor: pointer;
-  opacity: 1; /* Coração sempre visível */
+  opacity: 1;
+  transition: 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+}
+
+.heart-icon:hover {
+  transform: scale(1.3);
+}
+
+.heart-icon.liked {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.heart-icon.liked:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.15);
 }
 </style>

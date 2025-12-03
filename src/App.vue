@@ -1,8 +1,16 @@
 <script setup>
+import { onMounted } from 'vue';
 import Header from "./components/Header.vue";
 import Hero from "./components/Hero.vue";
 import Main from "./components/Main.vue";
 import Footer from "./components/Footer.vue";
+import { useTheme } from "./composables/useTheme.js";
+
+const { initTheme } = useTheme();
+
+onMounted(() => {
+  initTheme();
+});
 </script>
 
 <template>
@@ -10,8 +18,6 @@ import Footer from "./components/Footer.vue";
   <Hero /> 
   <Main />
   <Footer />
-
-  <h2>InspiraPixel</h2>
 </template>
 
 <style scoped lang="scss">
@@ -22,5 +28,6 @@ import Footer from "./components/Footer.vue";
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
+
 
 </style>

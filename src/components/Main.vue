@@ -10,7 +10,7 @@ export default {
       // ARRAY DE OBJETOS COM INFORMAÇÕES DAS IMAGENS
       galleryImages: [
         { src: 'path/to/image1.jpg', alt: 'Montanha nevada' },
-        { src: 'path/to/image2.jpg', alt: 'Gaivotas voando' },
+        { src: 'src/assets/card(5).png', alt: 'Gaivotas voando' },
         { src: 'path/to/image3.jpg', alt: 'Passarela de madeira na praia' },
         { src: 'path/to/image4.jpg', alt: 'Pôr do sol no lago' },
         { src: 'path/to/image5.jpg', alt: 'Pôr do sol na costa' },
@@ -31,7 +31,7 @@ export default {
 
 
 <template>
-  <section class="main-section">
+  <section class="main-section" id="galeria">
     <h3>Inspire-se</h3>
 
     <div class="gallery-grid">
@@ -45,19 +45,22 @@ export default {
 <style scoped>
 .main-section {
   padding: 60px 10%;
+  background-color: var(--color-bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 h3 {
   font-size: 2em;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-secondary);
   margin-bottom: 40px;
+  transition: color 0.3s ease;
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-  gap: 20px; /* Espaço entre as imagens */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 /* Responsividade básica - Ajustar para telas menores */
