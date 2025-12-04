@@ -5,18 +5,21 @@ import Hero from "./components/Hero.vue";
 import Main from "./components/Main.vue";
 import Footer from "./components/Footer.vue";
 import { useTheme } from "./composables/useTheme.js";
+import { useFetchImages } from "./composables/useFetchImages.js";
 
 const { initTheme } = useTheme();
+const { images, loading, error, fetchImages } = useFetchImages();
 
-onMounted(() => {
+onMounted(async () => {
   initTheme();
+  await fetchImages(12);
 });
 </script>
 
 <template>
   <Header />
   <Hero /> 
-  <Main />
+  <Main :images="images" :loading="loading" :error="error" />
   <Footer />
 </template>
 

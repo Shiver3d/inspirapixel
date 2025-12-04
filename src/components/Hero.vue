@@ -1,5 +1,4 @@
-<script>
-
+<script setup>
 </script>
 
 
@@ -20,10 +19,11 @@
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
+
 .hero-section {
   display: flex;
-  margin-top: 4vh;
+  margin-top: 9vh;
   align-items: center;
   justify-content: space-between;
   padding: 80px 10%;

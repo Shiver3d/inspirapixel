@@ -1,4 +1,6 @@
-<script></script>
+<script setup>
+import { Icon } from "@iconify/vue";
+</script>
 
 <!-- Footer em html -->
 <template>
@@ -6,7 +8,7 @@
     <div class="footer-content">
       <div class="contact-info">
         <h5>Contato</h5>
-        <p>contato@inspirolens.com</p>
+        <p><a href="mailto:contato@inspirolens.com">contato@inspirolens.com</a></p>
         <p>Central de ajuda</p>
         <p>Rio de Janeiro - Brasil</p>
       </div>
@@ -28,21 +30,26 @@
     </div>
 
     <div class="social-links">
-      <a href="#" class="social-icon">F</a>
-      <a href="#" class="social-icon">in</a>
-      <a href="#" class="social-icon">T</a>
-      <a href="#" class="social-icon">Ig</a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:facebook" width="30" height="30" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:linkedin" width="30" height="30" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:twitter" width="30" height="30" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:instagram" width="30" height="30" /></a>
     </div>
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .footer-section {
   background-color: var(--color-bg-primary);
-  padding: 40px 10%;
+  padding: 50px 10%;
   border-top: 1px solid var(--color-border);
   text-align: center;
   transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text-tertiary);
 }
 
 .footer-content {
@@ -127,8 +134,8 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background-color: var(--color-text-secondary);
   color: var(--color-bg-primary);
   border-radius: 50%;

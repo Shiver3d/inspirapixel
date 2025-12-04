@@ -1,30 +1,22 @@
-<script>
-import { Icon } from "@iconify/vue";
-// script setup não é usado aqui porque precisamos definir props, então usamos a sintaxe padrão do Vue para o componente do card
-export default {
-  name: 'GalleryItem',
-  components: { Icon },
-  props: {
-    imageSrc: {
-      type: String,
-      required: true,
-    },
-    imageAlt: {
-      type: String,
-      default: 'Imagem inspiradora',
-    },
-  },
-  data() {
-    return {
-      liked: false,
-    };
-  },
-  methods: {
-    toggleLike() {
-      this.liked = !this.liked;
-    },
-  },
-};
+<script setup>
+import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
+
+// Props para cada item da galeria
+const props = defineProps({
+  imageSrc: { type: String, required: true },
+  imageAlt: { type: String, default: 'Imagem inspiradora' },
+  id: { type: [String, Number], default: null },
+});
+
+const emit = defineEmits(['toggle:like']);
+
+const liked = ref(false);
+
+function toggleLike() {
+  liked.value = !liked.value;
+  emit('toggle:like', { id: props.id, liked: liked.value });
+}
 </script>
 
 
@@ -45,7 +37,7 @@ export default {
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
 .gallery-item {
   position: relative;
   overflow: hidden;
@@ -90,6 +82,7 @@ export default {
   align-items: center;
   justify-content: center;
   color: var(--color-text-primary);
+  background-color: rgba(187, 176, 185, 0.356);
 }
 
 .heart-icon:hover {

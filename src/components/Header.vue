@@ -71,7 +71,7 @@ h1 {
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-primary-alt);
-  margin-right: 60vw;
+  margin-right: 56vw;
   transition: color 0.3s ease;
   font-family: "Abril Fatface", serif;
 }
