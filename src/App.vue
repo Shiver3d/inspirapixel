@@ -12,7 +12,7 @@ const { images, loading, error, fetchImages } = useFetchImages();
 
 onMounted(async () => {
   initTheme();
-  await fetchImages(12);
+  await fetchImages(20);
 });
 </script>
 
