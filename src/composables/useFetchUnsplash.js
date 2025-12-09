@@ -2,7 +2,7 @@ import { ref } from 'vue';
 
 // Chave pública da Unsplash - substitua pela sua se necessário
 // Você pode obter uma gratuitamente em: https://unsplash.com/developers
-const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY || '';
+const VITE_UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY || '';
 
 export const useFetchUnsplash = () => {
   const images = ref([]);
@@ -25,8 +25,8 @@ export const useFetchUnsplash = () => {
         order_by: 'relevant',
       });
 
-      if (UNSPLASH_ACCESS_KEY) {
-        params.append('client_id', UNSPLASH_ACCESS_KEY);
+      if (VITE_UNSPLASH_ACCESS_KEY) {
+        params.append('client_id', VITE_UNSPLASH_ACCESS_KEY);
       }
 
       const response = await fetch(`${baseUrl}?${params}`);
