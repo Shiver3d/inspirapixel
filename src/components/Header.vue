@@ -2,18 +2,32 @@
 import { ref, computed } from 'vue';
 import { Icon } from "@iconify/vue";
 import { useTheme } from "../composables/useTheme.js";
+import SearchModal from "./SearchModal.vue";
 
 const { isDark, toggleTheme } = useTheme();
 
-// Menu hamburger state
-const menuOpen = ref(false);
-const ariaLabel = computed(() => (menuOpen.value ? 'Fechar menu' : 'Abrir menu'));
+defineProps({
+  menuOpen: {
+    type: Boolean,
+    default: false,
+  },
+});
 
-const toggleMenu = () => {
-  menuOpen.value = !menuOpen.value;
+const isSearchOpen = ref(false);
+const isMobileScreen = ref(window.innerWidth <= 468);
+
+const openSearch = () => {
+  isSearchOpen.value = true;
 };
-</script>
 
+const closeSearch = () => {
+  isSearchOpen.value = false;
+};
+
+window.addEventListener('resize', () => {
+  isMobileScreen.value = window.innerWidth <= 468;
+});
+</script>
 
 <!-- header -->
 <template>
@@ -21,20 +35,16 @@ const toggleMenu = () => {
     <img src="../assets/logo.svg" alt="Logo" />
     <h1>Inspira Pixel</h1>
 
-    <!-- html do botão hamburguer -->
-    <button class="hamburger" @click="toggleMenu" :aria-label="ariaLabel" aria-expanded="menuOpen">
-      <Icon :icon="menuOpen ? 'mdi:close' : 'mdi:menu'" width="28" height="28" />
-    </button>
+    <div class="search-wrapper">
+      <SearchModal :is-mobile-bottom="false" />
+    </div>
 
     <nav :class="{ open: menuOpen }">
       <ul>
         <li>
           <a href="">
-            <Icon icon="material-symbols:search" width="30" height="30" />
+            <Icon icon="material-symbols:person-outline" width="30" height="30" />
           </a>
-        </li>
-        <li>
-          <a href=""><Icon icon="material-symbols:person-outline" width="30" height="30" /></a>
         </li>
         <li><a href="#hero">Início</a></li>
         <li><a href="#galeria">Galeria</a></li>
@@ -48,6 +58,8 @@ const toggleMenu = () => {
       </ul>
     </nav>
   </header>
+
+
 </template>
 
 <style scoped lang="scss">
@@ -64,16 +76,27 @@ header {
   background-color: var(--color-bg-primary);
   box-shadow: 0 2px 4px var(--color-shadow);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1;
+  z-index: 100;
+  gap: 1rem;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
 }
 
 h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-primary-alt);
-  margin-right: 56vw;
+  color: var(--color-primary);
+  flex: 1;
   transition: color 0.3s ease;
   font-family: "Abril Fatface", serif;
+}
+
+.search-wrapper {
+  flex: 0 1 auto;
 }
 
 ul {
@@ -128,33 +151,33 @@ li {
   filter: invert(0);
 }
 
-/* botão hamburger */
-.hamburger {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  margin-left: 8px;
-  color: #e54d7d;
-}
-
 @media (max-width: 768px) {
-  .hamburger {
-    display: block;
+  header {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .theme-toggle {
+    display: none;
   }
 
   h1 {
-   display: none;
+    font-size: 1.3rem;
+    flex: 1;
+  }
+
+  .search-wrapper {
+    display: none;
   }
 
   nav {
     position: absolute;
+    margin-top: 40vh;
     top: 100%;
     right: 0;
     left: 0;
     background: var(--color-bg-primary);
-    transform: translateY(-10px);
+    transform: translateY(10px);
     opacity: 0;
     pointer-events: none;
     transition: transform 0.25s ease, opacity 0.25s ease;
@@ -171,17 +194,32 @@ li {
     flex-direction: column;
     gap: 0;
     padding: 12px 16px 18px;
+    align-items: stretch;
   }
 
   nav ul li {
     padding: 10px 0;
-    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg-secondary);
   }
 
   nav ul li a {
     width: 100%;
     display: block;
     padding: 6px 8px;
+  }
+}
+
+@media (max-width: 467px) {
+  header {
+    padding: 0.6rem 0.8rem;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  nav {
+    display: none;
   }
 }
 

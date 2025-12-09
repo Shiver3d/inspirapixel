@@ -43,6 +43,18 @@ html, body {
   font-family: 'Inter', sans-serif;
 }
 
+/* Padding para acomodar header fixo (56px) */
+main, section:not(.hero-section) {
+  padding-top: 70px;
+}
+
+/* Padding adicional para bottom nav no mobile */
+@media (max-width: 468px) {
+  main, section:not(.hero-section) {
+    padding-bottom: 70px;
+  }
+}
+
 /* Teste de mixins para breakpoint */
 @mixin bp($size) {
   @if $size == md {
@@ -74,7 +86,7 @@ html, body {
   }
 }
 
-/* Small utilities */
+
 .visually-hidden {
   position: absolute;
   height: 1px; width: 1px;
@@ -90,7 +102,7 @@ html, body {
   --color-primary-dark: #c9436c;
   --color-primary-alt: #8239b3;
 
-  
+  --color-bottom-nav: #a0a0a070;
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f7f7f7;
   --color-bg-tertiary: #f5f5f5;
@@ -180,7 +192,7 @@ html, body {
     text-align: center;
   }
 
-  /* Increase touch targets */
+
   .heart-icon {
     padding: 8px;
     width: 44px;
@@ -220,7 +232,7 @@ html, body {
     padding: 30px 6%;
   }
 
-  /* Botão de coração um pouco maior pra toque */
+
   .heart-icon {
     padding: 10px;
     width: 48px;

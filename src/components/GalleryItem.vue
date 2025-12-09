@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 
-// Props para cada item da galeria
 const props = defineProps({
   imageSrc: { type: String, required: true },
   imageAlt: { type: String, default: 'Imagem inspiradora' },
@@ -82,7 +81,7 @@ function toggleLike() {
   align-items: center;
   justify-content: center;
   color: var(--color-text-primary);
-  background-color: rgba(187, 176, 185, 0.356);
+  background-color: rgba(250, 189, 189, 0.459);
 }
 
 .heart-icon:hover {

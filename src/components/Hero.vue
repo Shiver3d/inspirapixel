@@ -1,11 +1,12 @@
-<script setup>
+<script>
+
 </script>
 
 
 
 <!-- hero -->
 <template>
-  <section class="hero-section" id="hero">
+  <section class="hero-section">
     <div class="content">
       <h2>Onde a paisagem vira <span class="highlight">inspiração</span>.</h2>
       <p>
@@ -19,16 +20,15 @@
 </template>
 
 
-<style scoped lang="scss">
-
+<style scoped>
 .hero-section {
   display: flex;
-  margin-top: 9vh;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 10%;
+  margin-top: 10vh;
+  padding: 10vh 8%;
   background-color: var(--color-bg-secondary);
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .content {
@@ -36,7 +36,7 @@
 }
 
 h2 {
-  font-size: 4.5rem;
+  font-size: 4em;
   font-weight: 800;
   color: var(--color-text-secondary);
   margin: 0 0 20px 0;
@@ -57,13 +57,13 @@ p {
 }
 
 .image-container {
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .hero-image {
-  width: 80%;
+  width: 65%;
   height: auto;
   border-radius: 20px;
   object-fit: cover;
@@ -82,24 +82,38 @@ p {
   .hero-section {
     flex-direction: column;
     text-align: center;
-    margin-top: 10vh;
+    padding: 5vh 5%;
+    gap: 30px;
   }
 
   .content {
     max-width: 100%;
-    margin-bottom: 30px;
   }
 
   h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
-  .image-container {
-    width: 100%;
+  span {
+    font-size: 4rem;
+  }
+
+  p {
+    font-size: 1rem;
   }
 
   .hero-image {
-    width: 100%;
+    width: 90%;
+  }
+}
+
+@media (max-width: 468px) {
+  h2 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.1em;
   }
 }
 

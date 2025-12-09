@@ -8,7 +8,6 @@ const props = defineProps({
   error: { type: String, default: null },
 });
 
-// Track liked items (by id)
 const likedIds = ref(new Set());
 
 function onToggleLike(payload) {
@@ -22,17 +21,14 @@ function onToggleLike(payload) {
   <section class="main-section" id="galeria">
     <h3>Inspire-se</h3>
 
-    <!-- Loading state -->
     <div v-if="loading" class="loading-message">
       Carregando imagens...
     </div>
 
-    <!-- Error state -->
     <div v-else-if="error" class="error-message">
       Erro ao carregar imagens: {{ error }}
     </div>
 
-    <!-- Gallery grid -->
     <div v-else-if="images && images.length > 0" class="gallery-grid">
       <GalleryItem
         v-for="(image, index) in images"
@@ -44,7 +40,6 @@ function onToggleLike(payload) {
       />
     </div>
 
-    <!-- Estado vazio -->
     <div v-else class="empty-message">
       Nenhuma imagem disponível no momento.
     </div>

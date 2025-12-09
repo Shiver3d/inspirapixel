@@ -1,5 +1,5 @@
 <script setup>
-import { Icon } from "@iconify/vue";
+import { Icon } from '@iconify/vue';
 </script>
 
 <!-- Footer em html -->
@@ -8,7 +8,7 @@ import { Icon } from "@iconify/vue";
     <div class="footer-content">
       <div class="contact-info">
         <h5>Contato</h5>
-        <p><a href="mailto:contato@inspirolens.com">contato@inspirolens.com</a></p>
+        <p>contato@inspirolens.com</p>
         <p>Central de ajuda</p>
         <p>Rio de Janeiro - Brasil</p>
       </div>
@@ -30,26 +30,21 @@ import { Icon } from "@iconify/vue";
     </div>
 
     <div class="social-links">
-      <a href="#" class="social-icon"><Icon icon="entypo-social:facebook" width="30" height="30" /></a>
-      <a href="#" class="social-icon"><Icon icon="entypo-social:linkedin" width="30" height="30" /></a>
-      <a href="#" class="social-icon"><Icon icon="entypo-social:twitter" width="30" height="30" /></a>
-      <a href="#" class="social-icon"><Icon icon="entypo-social:instagram" width="30" height="30" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:facebook" width="40" height="40" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:linkedin" width="40" height="40" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:twitter" width="40" height="40" /></a>
+      <a href="#" class="social-icon"><Icon icon="entypo-social:instagram" width="40" height="40" /></a>
     </div>
   </footer>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .footer-section {
   background-color: var(--color-bg-primary);
-  padding: 50px 10%;
+  padding: 40px 10%;
   border-top: 1px solid var(--color-border);
   text-align: center;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-a {
-  text-decoration: none;
-  color: var(--color-text-tertiary);
+  transition: 0.3s ease;
 }
 
 .footer-content {
@@ -99,7 +94,7 @@ p {
   border-radius: 5px;
   box-sizing: border-box;
   color: var(--color-text-primary);
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .email-input::placeholder {
@@ -115,7 +110,7 @@ p {
   cursor: pointer;
   font-weight: bold;
   font-size: 1em;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: 0.3s ease;
 }
 
 .subscribe-button:hover {
@@ -123,30 +118,54 @@ p {
   transform: translateY(-2px);
 }
 
-/* Social Links Styles */
+/* Estilização dos ícones das redes */
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 25px;
 }
 
 .social-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: var(--color-text-secondary);
   color: var(--color-bg-primary);
   border-radius: 50%;
   text-decoration: none;
   font-size: 1.2em;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: 0.3s ease;
 }
 
 .social-icon:hover {
   background-color: var(--color-primary);
   color: white;
   transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+
+  .footer-section {
+    margin-bottom: 10vh;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .newsletter-form {
+    text-align: center;
+  }
+
+  .form-group {
+    align-items: center;
+  }
+
+  
 }
 </style>
