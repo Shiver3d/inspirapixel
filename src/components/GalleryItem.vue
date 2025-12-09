@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Icon } from '@iconify/vue';
+import ScrollReveal from 'scrollreveal';
 
 const props = defineProps({
   imageSrc: { type: String, required: true },
@@ -16,6 +17,28 @@ function toggleLike() {
   liked.value = !liked.value;
   emit('toggle:like', { id: props.id, liked: liked.value });
 }
+
+
+onMounted(() => {
+  const sr = ScrollReveal({
+    distance: '60px',
+    duration: 1200,
+    easing: 'cubic-bezier(0.5, 0, 0, 1)',
+    reset: false // Se for true, a animação se repete toda vez que o elemento entra/sai da view
+  });
+
+  sr.reveal('.image-wrapper', { 
+    origin: 'bottom',
+    delay: 200 
+  });
+
+  sr.reveal('.gallery-item', {
+    origin: 'bottom',
+    interval: 150, 
+    delay: 500
+  });
+});
+
 </script>
 
 

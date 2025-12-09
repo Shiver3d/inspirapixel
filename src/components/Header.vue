@@ -209,18 +209,11 @@ li {
   }
 }
 
-@media (max-width: 467px) {
+@media (max-width: 468px) {
   header {
     padding: 0.6rem 0.8rem;
   }
 
-  h1 {
-    display: none;
-  }
-
-  nav {
-    display: none;
-  }
 }
 
 </style>

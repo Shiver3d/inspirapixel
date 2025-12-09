@@ -10,6 +10,7 @@ import { useTheme } from "./composables/useTheme.js";
 import { useFetchUnsplash } from "./composables/useFetchUnsplash.js";
 import { useSearch } from "./composables/useSearch.js";
 
+
 const { isDark, toggleTheme, initTheme } = useTheme();
 const { images, loading, error, fetchImages } = useFetchUnsplash();
 const { isSearchOpen, openSearch, closeSearch } = useSearch();

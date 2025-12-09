@@ -70,6 +70,8 @@ h3 {
   gap: 20px;
 }
 
+
+
 .loading-message,
 .error-message,
 .empty-message {
@@ -100,13 +102,13 @@ h3 {
 /* Responsividade básica - Ajustar para telas menores */
 @media (max-width: 1024px) {
   .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);;
   }
 }
 
 @media (max-width: 768px) {
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);  
   }
   
   .main-section {

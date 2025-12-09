@@ -92,4 +92,12 @@ const props = defineProps({
     margin: 5vh 12vw;
   }
 }
+
+@media (max-width: 418px) {
+  .bottom-nav {
+    display: flex;
+    margin: 5vh 10vw;
+  }
+}
+
 </style>
