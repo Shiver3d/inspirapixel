@@ -17,3 +17,4 @@ export const useSearch = () => {
     closeSearch,
   };
 };
+//obs: esse composable gerencia o estado de abertura e fechamento do modal de busca no aplicativo.

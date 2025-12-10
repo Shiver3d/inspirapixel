@@ -22,6 +22,19 @@ const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
 };
 
+//função para lidar com a pesquisa
+const handleSearch = async (searchTerm) => {
+  if (searchTerm && searchTerm.trim() !== '') {
+    // 1. Inicia a busca com o novo termo
+    await fetchImages(searchTerm, 1, 12);
+  } else {
+    // 2. Ou carrega imagens aleatórias se o termo for vazio
+    await fetchImages('random', 1, 12);
+  }
+  // 3. Fecha o modal de pesquisa após a busca
+  closeSearch(); 
+}; //detalhei isso aq pq achei que tava precisando pra nn esquecer
+
 onMounted(async () => {
   initTheme();
   await fetchImages('landscape', 1, 12);
@@ -29,18 +42,19 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Header :menu-open="menuOpen" />
+  <Header :menu-open="menuOpen" @search="handleSearch" />
   <Hero /> 
   <Main :images="images" :loading="loading" :error="error" />
   <Footer />
   
+  <!-- Modal de pesquisa para mobile -->
   <SearchModal
     :is-open="isSearchOpen"
     :is-mobile-bottom="true"
     @close="closeSearch"
-    @search="closeSearch"
+    @search="handleSearch"
   />
-  
+  <!-- Menu de navegação inferior para mobile -->
   <BottomNavigation
     :is-dark="isDark"
     :menu-open="menuOpen"
@@ -51,7 +65,7 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
-
+// Reset básico
 * {
   margin: 0;
   padding: 0;

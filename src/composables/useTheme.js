@@ -46,3 +46,5 @@ export const useTheme = () => {
     initTheme,
   };
 };
+
+//obs: o uso desse .js ficou bem explicado já, acredito que não precisa de mais comentários

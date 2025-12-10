@@ -1,31 +1,30 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
-import { useFetchUnsplash } from '../composables/useFetchUnsplash.js';
 
+//emits e props de comunicação com o componente pai
 const emit = defineEmits(['search', 'close']);
 const props = defineProps({
   isOpen: { type: Boolean, default: false },
   isMobileBottom: { type: Boolean, default: false },
+  loading: { type: Boolean, default: false },
 });
 
-const { fetchImages, loading } = useFetchUnsplash();
 const searchInput = ref('');
 const searchHistory = ref(JSON.parse(localStorage.getItem('searchHistory') || '[]'));
 
-const handleSearch = async (query = searchInput.value) => {
+const handleSearch = (query = searchInput.value) => {
   if (!query.trim()) return;
 
-  // Adicionar ao histórico
+  // Adicionar ao histórico de pesquisa
   if (!searchHistory.value.includes(query)) {
     searchHistory.value.unshift(query);
     if (searchHistory.value.length > 5) searchHistory.value.pop();
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory.value));
   }
 
-  searchInput.value = '';
-  await fetchImages(query, 1, 12);
   emit('search', query);
+  searchInput.value = '';
 };
 
 const handleHistoryClick = (historyQuery) => {
@@ -53,7 +52,7 @@ const clearHistory = () => {
         v-model="searchInput"
         type="text"
         placeholder="Buscar imagens..."
-        @keyup.enter="handleSearch"
+        @keyup.enter="handleSearch()"
         class="search-input"
       />
     </div>
@@ -76,7 +75,7 @@ const clearHistory = () => {
             v-model="searchInput"
             type="text"
             placeholder="Paisagem, natureza, cidade..."
-            @keyup.enter="handleSearch"
+            @keyup.enter="handleSearch()"
             class="search-input"
             autofocus
           />

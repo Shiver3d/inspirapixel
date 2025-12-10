@@ -96,7 +96,7 @@ const props = defineProps({
 @media (max-width: 418px) {
   .bottom-nav {
     display: flex;
-    margin: 5vh 10vw;
+    margin: 5vh 8vw;
   }
 }
 

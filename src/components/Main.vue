@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import GalleryItem from './GalleryItem.vue';
-
+//props da main pra receber os dados e cards
 const props = defineProps({
   images: { type: Array, default: () => [] },
   loading: { type: Boolean, default: false },
@@ -16,10 +16,13 @@ function onToggleLike(payload) {
   else likedIds.value.delete(payload.id);
 }
 </script>
-
+<!-- html da main-->
 <template>
   <section class="main-section" id="galeria">
+    <div class="section-text">
     <h3>Inspire-se</h3>
+    <p>Para salvar as imagens, aperte o click direito ou pressione e segure na tela!</p>
+    </div>
 
     <div v-if="loading" class="loading-message">
       Carregando imagens...
@@ -41,7 +44,7 @@ function onToggleLike(payload) {
     </div>
 
     <div v-else class="empty-message">
-      Nenhuma imagem disponível no momento.
+      <span>Nenhuma imagem encontrada.</span>
     </div>
   </section>
 </template>
@@ -56,6 +59,11 @@ function onToggleLike(payload) {
   min-height: 60vh;
 }
 
+.section-text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 h3 {
   font-size: 2em;
   font-weight: 700;
@@ -64,13 +72,18 @@ h3 {
   transition: color 0.3s ease;
 }
 
+p {
+  font-size: 1em;
+  color: var(--color-text-tertiary);
+  margin-bottom: 5vh;
+  transition: color 0.3s ease;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
-
-
 
 .loading-message,
 .error-message,

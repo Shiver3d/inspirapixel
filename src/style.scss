@@ -43,10 +43,6 @@ html, body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Padding para acomodar header fixo (56px) */
-main, section:not(.hero-section) {
-  padding-top: 70px;
-}
 
 /* Padding adicional para bottom nav no mobile */
 @media (max-width: 468px) {
@@ -239,6 +235,4 @@ html, body {
     height: 48px;
   }
 }
-
-
-
+//obs: o código tem partes não sendo aplicadas pq são partes de implementações futuras ou testes que n foram usados no final e/ou foram substituídos por outras soluções.

@@ -1,32 +1,27 @@
 import { ref } from 'vue';
 
-// Chave pública da Unsplash - substitua pela sua se necessário
-// Você pode obter uma gratuitamente em: https://unsplash.com/developers
-const VITE_UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY || '';
+const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY || ''; // Pega a chave da API do Unsplash das variáveis de imagem
 
 export const useFetchUnsplash = () => {
   const images = ref([]);
   const loading = ref(false);
   const error = ref(null);
-  const query = ref('landscape');
+  const query = ref('random');
 
-  const fetchImages = async (searchQuery = 'landscape', page = 1, perPage = 12) => {
+  const fetchImages = async (searchQuery = 'random', page = 1, perPage = 12) => {
     loading.value = true;
     error.value = null;
     query.value = searchQuery;
 
     try {
-      // Se houver chave de API, usar endpoint autenticado; senão, usar endpoint público
-      const baseUrl = 'https://api.unsplash.com/search/photos';
+      const baseUrl = 'https://api.unsplash.com/photos/random';
       const params = new URLSearchParams({
         query: searchQuery,
-        page,
-        per_page: perPage,
-        order_by: 'relevant',
+        count: perPage,
       });
 
-      if (VITE_UNSPLASH_ACCESS_KEY) {
-        params.append('client_id', VITE_UNSPLASH_ACCESS_KEY);
+      if (UNSPLASH_ACCESS_KEY) {
+        params.append('client_id', UNSPLASH_ACCESS_KEY);
       }
 
       const response = await fetch(`${baseUrl}?${params}`);
@@ -37,7 +32,8 @@ export const useFetchUnsplash = () => {
 
       const data = await response.json();
 
-      images.value = (data.results || []).map((img) => ({
+      // O endpoint de fotos aleatórias com 'count' retorna um array diretamente
+      images.value = (data || []).map((img) => ({
         id: img.id,
         src: img.urls.regular,
         alt: img.alt_description || img.description || 'Imagem do Unsplash',
@@ -61,3 +57,5 @@ export const useFetchUnsplash = () => {
     fetchImages,
   };
 };
+
+//obs: esse composable faz requisições à API do Unsplash para buscar imagens aleatórias com base em uma consulta de pesquisa fornecida. Ele gerencia o estado de carregamento, erros e os dados das imagens retornadas.

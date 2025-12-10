@@ -13,6 +13,8 @@ defineProps({
   },
 });
 
+defineEmits(['search']);
+
 const isSearchOpen = ref(false);
 const isMobileScreen = ref(window.innerWidth <= 468);
 
@@ -36,7 +38,7 @@ window.addEventListener('resize', () => {
     <h1>Inspira Pixel</h1>
 
     <div class="search-wrapper">
-      <SearchModal :is-mobile-bottom="false" />
+      <SearchModal :is-mobile-bottom="false" @search="$emit('search', $event)" />
     </div>
 
     <nav :class="{ open: menuOpen }">
